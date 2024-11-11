@@ -6,8 +6,8 @@ def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2023-24/players"
     response = requests.get(url).json()
 
-    print("JSON-muotoinen vastaus:")
-    print(response)
+    #print("JSON-muotoinen vastaus:")
+    #print(response)
 
     players = []
 
@@ -15,11 +15,11 @@ def main():
         player = Player(player_dict)
         players.append(player)
 
-    print("Oliot:")
+    print("Players from FIN: \n")
 
     for player in players:
        if player.nationality == "FIN":
-        print(f"{player} team {player.team} goals {player.goals} assists {player.assists}")
+        print(f"{player} {player.team} {player.goals} + {player.assists} = {player.assists+player.goals}")
 
 
 if __name__ == "__main__":
