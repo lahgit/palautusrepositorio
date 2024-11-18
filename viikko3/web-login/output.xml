@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20241118 17:51:33.933" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="/home/jesselah/Desktop/ohtupalautukset/palautusrepositorio/viikko3/web-login/src/tests">
+<suite id="s1-s1" name="Home" source="/home/jesselah/Desktop/ohtupalautukset/palautusrepositorio/viikko3/web-login/src/tests/home.robot">
+<kw name="Open And Configure Browser" library="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20241118 17:51:34.198" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7b051f073640&gt;</msg>
+<status status="PASS" starttime="20241118 17:51:34.198" endtime="20241118 17:51:34.198"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:34.181" endtime="20241118 17:51:34.198"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:34.198" endtime="20241118 17:51:34.198"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 17:51:34.198" endtime="20241118 17:51:34.198"/>
+</branch>
+<status status="PASS" starttime="20241118 17:51:34.181" endtime="20241118 17:51:34.199"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</branch>
+<status status="PASS" starttime="20241118 17:51:34.199" endtime="20241118 17:51:34.199"/>
+</if>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20241118 17:51:34.200" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<msg timestamp="20241118 17:51:34.259" level="WARN">The chromedriver version (130.0.6723.91) detected in PATH at /usr/bin/chromedriver might not be compatible with the detected chrome version (131.0.6778.69); currently, chromedriver 131.0.6778.69 is recommended for chrome 131.*, so it is advised to delete the driver in PATH and retry</msg>
+<status status="PASS" starttime="20241118 17:51:34.200" endtime="20241118 17:51:34.915"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:34.181" endtime="20241118 17:51:34.915"/>
+</kw>
+<test id="s1-s1-t1" name="Click Login Link" line="14">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 17:51:34.917" endtime="20241118 17:51:34.923"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 17:51:34.924" level="INFO">Opening url 'http://localhost:5001'</msg>
+<status status="PASS" starttime="20241118 17:51:34.923" endtime="20241118 17:51:35.493"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:34.916" endtime="20241118 17:51:35.493"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:35.496" level="INFO">Clicking link 'Login'.</msg>
+<status status="PASS" starttime="20241118 17:51:35.494" endtime="20241118 17:51:37.148"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 17:51:37.664" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20241118 17:51:37.149" endtime="20241118 17:51:37.665"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:34.915" endtime="20241118 17:51:37.666"/>
+</test>
+<test id="s1-s1-t2" name="Click Register Link" line="18">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 17:51:37.670" endtime="20241118 17:51:37.676"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 17:51:37.677" level="INFO">Opening url 'http://localhost:5001'</msg>
+<status status="PASS" starttime="20241118 17:51:37.676" endtime="20241118 17:51:38.223"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:37.669" endtime="20241118 17:51:38.223"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>Register new user</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:38.226" level="INFO">Clicking link 'Register new user'.</msg>
+<status status="PASS" starttime="20241118 17:51:38.224" endtime="20241118 17:51:39.839"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 17:51:40.352" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 17:51:39.840" endtime="20241118 17:51:40.353"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:37.668" endtime="20241118 17:51:40.353"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20241118 17:51:40.355" endtime="20241118 17:51:40.921"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:33.952" endtime="20241118 17:51:40.921"/>
+</suite>
+<suite id="s1-s2" name="Login" source="/home/jesselah/Desktop/ohtupalautukset/palautusrepositorio/viikko3/web-login/src/tests/login.robot">
+<kw name="Open And Configure Browser" library="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20241118 17:51:40.932" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7b051f115c90&gt;</msg>
+<status status="PASS" starttime="20241118 17:51:40.931" endtime="20241118 17:51:40.932"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:40.931" endtime="20241118 17:51:40.932"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:40.932" endtime="20241118 17:51:40.932"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 17:51:40.932" endtime="20241118 17:51:40.932"/>
+</branch>
+<status status="PASS" starttime="20241118 17:51:40.931" endtime="20241118 17:51:40.932"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:40.933" endtime="20241118 17:51:40.933"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20241118 17:51:40.933" endtime="20241118 17:51:40.933"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 17:51:40.932" endtime="20241118 17:51:40.933"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20241118 17:51:40.933" endtime="20241118 17:51:40.933"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:40.933" endtime="20241118 17:51:40.933"/>
+</branch>
+<status status="PASS" starttime="20241118 17:51:40.932" endtime="20241118 17:51:40.934"/>
+</if>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20241118 17:51:40.935" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<msg timestamp="20241118 17:51:40.998" level="WARN">The chromedriver version (130.0.6723.91) detected in PATH at /usr/bin/chromedriver might not be compatible with the detected chrome version (131.0.6778.69); currently, chromedriver 131.0.6778.69 is recommended for chrome 131.*, so it is advised to delete the driver in PATH and retry</msg>
+<status status="PASS" starttime="20241118 17:51:40.934" endtime="20241118 17:51:41.631"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:40.930" endtime="20241118 17:51:41.631"/>
+</kw>
+<test id="s1-s2-t1" name="Login With Correct Credentials" line="8">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 17:51:41.633" endtime="20241118 17:51:41.638"/>
+</kw>
+<kw name="Create User" library="AppLibrary">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<status status="PASS" starttime="20241118 17:51:41.638" endtime="20241118 17:51:41.646"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 17:51:41.647" level="INFO">Opening url 'http://localhost:5001/login'</msg>
+<status status="PASS" starttime="20241118 17:51:41.647" endtime="20241118 17:51:42.252"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:41.646" endtime="20241118 17:51:42.252"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:41.632" endtime="20241118 17:51:42.252"/>
+</kw>
+<kw name="Set Username">
+<arg>kalle</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:42.255" level="INFO">Typing text 'kalle' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 17:51:42.254" endtime="20241118 17:51:43.916"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:42.253" endtime="20241118 17:51:43.917"/>
+</kw>
+<kw name="Set Password">
+<arg>kalle123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:43.920" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 17:51:44.981" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 17:51:45.558" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 17:51:43.919" endtime="20241118 17:51:45.559"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:43.918" endtime="20241118 17:51:45.559"/>
+</kw>
+<kw name="Submit Credentials">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:45.562" level="INFO">Clicking button 'Login'.</msg>
+<status status="PASS" starttime="20241118 17:51:45.561" endtime="20241118 17:51:47.697"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:45.560" endtime="20241118 17:51:47.698"/>
+</kw>
+<kw name="Login Should Succeed">
+<kw name="Main Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Ohtu Application main page</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 17:51:48.212" level="INFO">Page title is 'Ohtu Application main page'.</msg>
+<status status="PASS" starttime="20241118 17:51:47.701" endtime="20241118 17:51:48.213"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:47.700" endtime="20241118 17:51:48.213"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:47.699" endtime="20241118 17:51:48.213"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:41.631" endtime="20241118 17:51:48.214"/>
+</test>
+<test id="s1-s2-t2" name="Login With Incorrect Password" line="14">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 17:51:48.218" endtime="20241118 17:51:48.224"/>
+</kw>
+<kw name="Create User" library="AppLibrary">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<status status="PASS" starttime="20241118 17:51:48.224" endtime="20241118 17:51:48.234"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 17:51:48.235" level="INFO">Opening url 'http://localhost:5001/login'</msg>
+<status status="PASS" starttime="20241118 17:51:48.235" endtime="20241118 17:51:48.779"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:48.234" endtime="20241118 17:51:48.780"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:48.217" endtime="20241118 17:51:48.780"/>
+</kw>
+<kw name="Set Username">
+<arg>kalle</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:48.783" level="INFO">Typing text 'kalle' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 17:51:48.782" endtime="20241118 17:51:50.404"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:48.781" endtime="20241118 17:51:50.404"/>
+</kw>
+<kw name="Set Password">
+<arg>kalle456</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:50.407" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 17:51:51.459" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 17:51:52.045" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 17:51:50.406" endtime="20241118 17:51:52.045"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:50.405" endtime="20241118 17:51:52.045"/>
+</kw>
+<kw name="Submit Credentials">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 17:51:52.047" level="INFO">Clicking button 'Login'.</msg>
+<status status="PASS" starttime="20241118 17:51:52.046" endtime="20241118 17:51:54.172"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:52.046" endtime="20241118 17:51:54.172"/>
+</kw>
+<kw name="Login Should Fail With Message">
+<arg>Invalid username or password</arg>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 17:51:54.683" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20241118 17:51:54.174" endtime="20241118 17:51:54.684"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:54.173" endtime="20241118 17:51:54.684"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20241118 17:51:55.718" level="INFO">Current page contains text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20241118 17:51:54.685" endtime="20241118 17:51:55.719"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:54.173" endtime="20241118 17:51:55.719"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:48.216" endtime="20241118 17:51:55.720"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20241118 17:51:55.721" endtime="20241118 17:51:56.285"/>
+</kw>
+<status status="PASS" starttime="20241118 17:51:40.923" endtime="20241118 17:51:56.285"/>
+</suite>
+<status status="PASS" starttime="20241118 17:51:33.934" endtime="20241118 17:51:56.287"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Home">Tests.Home</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2" name="Login">Tests.Login</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20241118 17:51:34.259" level="WARN">The chromedriver version (130.0.6723.91) detected in PATH at /usr/bin/chromedriver might not be compatible with the detected chrome version (131.0.6778.69); currently, chromedriver 131.0.6778.69 is recommended for chrome 131.*, so it is advised to delete the driver in PATH and retry</msg>
+<msg timestamp="20241118 17:51:40.998" level="WARN">The chromedriver version (130.0.6723.91) detected in PATH at /usr/bin/chromedriver might not be compatible with the detected chrome version (131.0.6778.69); currently, chromedriver 131.0.6778.69 is recommended for chrome 131.*, so it is advised to delete the driver in PATH and retry</msg>
+</errors>
+</robot>
